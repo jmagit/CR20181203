@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="es" ng-app="MyApp" ng-controller="PrincipalController as app">
+<html lang="es" ng-app="myApp" ng-controller="PrincipalController as app">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,21 @@
     <title>Curso de AngularJS</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
-    <h1>Curso</h1>
-    
+    <h1>Curso de Angular</h1>
+    <h3>Hola {{app.auth.usuario}}</h3>
+
+    <div ng-controller="myController as vm">
+        <p>
+            <input type="text" ng-model="vm.nombre">
+            <input type="button" value="saluda" ng-click="vm.saluda()">
+            <input type="button" value="despide" ng-click="vm.despide()">
+            <input type="button" value="login" ng-click="vm.auth.login('admin', '1234567890')">
+            <input type="button" value="logout" ng-click="vm.auth.logout()">
+        </p>
+        <p>{{vm.resultado | capitalize}}</p>
+    </div>
     <!-- Framewoks -->
     <script src="vendor/angularjs/angular.js"></script>
     <script src="vendor/angularjs/i18n/angular-locale_es-es.js"></script>
@@ -18,4 +31,5 @@
     <script src="js/my-core.js"></script>
     <script src="js/app.js"></script>
 </body>
+
 </html>
