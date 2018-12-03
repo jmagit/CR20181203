@@ -21,7 +21,7 @@
             <input type="button" value="login" ng-click="vm.auth.login('admin', '1234567890')">
             <input type="button" value="logout" ng-click="vm.auth.logout()">
         </p>
-        <p>{{vm.resultado | capitalize}}</p>
+        <p ng-bind="vm.resultado"></p>
     </div>
     <!-- Framewoks -->
     <script src="vendor/angularjs/angular.js"></script>

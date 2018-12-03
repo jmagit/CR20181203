@@ -1,0 +1,91 @@
+{
+  "id": "7f4fecaa-4524-45b0-a393-961b72069d57",
+  "version": "1.1",
+  "name": "Demo",
+  "url": "http://localhost:9000",
+  "tests": [{
+    "id": "070a92c4-b203-4cb8-a0b8-07105b25a2db",
+    "name": "Saluda",
+    "commands": [{
+      "id": "f4c36f5e-b875-4434-9b57-7a7c104255f2",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b186d617-de17-44ae-8015-d472fcd3a96c",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1024x576",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4979d952-a1d7-471d-a4d3-1db087967dac",
+      "comment": "",
+      "command": "type",
+      "target": "css=.ng-untouched",
+      "targets": [
+        ["css=.ng-untouched", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "tu"
+    }, {
+      "id": "4a0f2da2-0f73-4dde-a883-f20da152bec7",
+      "comment": "",
+      "command": "click",
+      "target": "css=input[type=\"button\"]",
+      "targets": [
+        ["css=input[type=\"button\"]", "css"],
+        ["css=input:nth-child(2)", "css:finder"],
+        ["xpath=//input[@value='saluda']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2ed2df05-655a-4f42-9201-60f3dcb77005",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=p.ng-binding",
+      "targets": [
+        ["css=p.ng-binding", "css"],
+        ["css=.ng-binding:nth-child(2)", "css:finder"],
+        ["xpath=//p[2]", "xpath:position"]
+      ],
+      "value": "Hola tio"
+    }, {
+      "id": "961d6ceb-68b6-4aff-9c18-e9a142429c5e",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(3)",
+      "targets": [
+        ["css=input:nth-child(3)", "css:finder"],
+        ["xpath=//input[@value='despide']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8c5f502f-3058-4abd-9a5b-74fddfe6da54",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=p.ng-binding",
+      "targets": [
+        ["css=p.ng-binding", "css"],
+        ["css=.ng-binding:nth-child(2)", "css:finder"],
+        ["xpath=//p[2]", "xpath:position"]
+      ],
+      "value": "Adios tu"
+    }]
+  }],
+  "suites": [{
+    "id": "cdb06602-d767-4871-8990-d96d52cb5141",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["070a92c4-b203-4cb8-a0b8-07105b25a2db"]
+  }],
+  "urls": ["http://localhost:9000/"],
+  "plugins": []
+}
