@@ -1,6 +1,6 @@
-angular.module('myApp', ['MyCore']);
+angular.module("MyApp", ['MyCore']);
 
-angular.module('myApp').controller('PrincipalController', ['auth',
+angular.module("MyApp").controller('PrincipalController', ['auth',
 	function (auth) {
 		this.title = 'Curso de AngularJS';
 		this.auth = auth;
@@ -8,7 +8,7 @@ angular.module('myApp').controller('PrincipalController', ['auth',
 	}
 ]);
 
-angular.module("myApp").controller('myController', ['$scope', 'auth',
+angular.module("MyApp").controller('myController', ['$scope', 'auth',
 	function ($scope, auth) {
 		var vm = this;
 		vm.nombre = 'MUNDO';
@@ -24,7 +24,7 @@ angular.module("myApp").controller('myController', ['$scope', 'auth',
 	}
 ]);
 
-angular.module("myApp").factory('auth', [function () {
+angular.module("MyApp").factory('auth', [function () {
 	return {
 		usuario: '(anonimo)',
 		token: null,

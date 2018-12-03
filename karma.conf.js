@@ -22,6 +22,7 @@ module.exports = function(config) {
     files: [
       'app/vendor/angularjs/angular.js',
       'app/vendor/angularjs/i18n/angular-locale_es-es.js',
+      'app/vendor/angularjs/angular-mocks.js',
       'app/js/**/*.js',
       'test/**/*.spec.js'
     ],

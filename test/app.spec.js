@@ -1,17 +1,18 @@
 describe('Pruebas AngularJS', function () {
+    beforeEach(module("MyApp"));
     it('Primera prueba', function () {
         expect(true).toBeTruthy();
     });
-    xit('Falla', function () {
-        expect(false).toBeTruthy();
-    });
+    // xit('Falla', function () {
+    //     expect(false).toBeTruthy();
+    // });
 
 });
 describe('Pruebas filtros', function () {
     beforeEach(module('MyCore'));
     var filtro;
     beforeEach(inject(function ($filter) {
-        filtro = $filter('capitalice');
+        filtro = $filter('capitalize');
     }));
     it("Sin valor", function () {
         expect(filtro('')).toBe('');
@@ -32,7 +33,7 @@ describe('Pruebas filtros', function () {
 });
 describe('Demo de controlador', function () {
     var scope, ctrl;
-    beforeEach(module('myApp'));
+    beforeEach(module('MyApp'));
     beforeEach(inject(function ($rootScope, $controller) {
         scope = $rootScope.$new();
         ctrl = $controller("myController", {
@@ -40,7 +41,7 @@ describe('Demo de controlador', function () {
         });
     }));
 
-    fit('Saludar', function () {
+    it('Saludar', function () {
         ctrl.nombre = 'Ciudad Real';
         ctrl.saluda();
         expect('Hola Ciudad Real').toBe(ctrl.resultado);
@@ -52,7 +53,7 @@ describe('Demo de controlador', function () {
     });
 });
 describe("Pruebas de servicios", function() {
-    beforeEach(module("myApp"));
+    beforeEach(module("MyApp"));
       
     var srv;
     beforeEach(inject(function(auth) {
