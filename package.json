@@ -1,0 +1,23 @@
+{
+  "name": "curso",
+  "version": "1.0.0",
+  "description": "Curso de AngularJS",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "lite-server",
+    "test": "karma"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmagit/CR20181203.git"
+  },
+  "author": "Javiar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jmagit/CR20181203/issues"
+  },
+  "homepage": "https://github.com/jmagit/CR20181203#readme"
+}

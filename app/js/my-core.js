@@ -1,0 +1,1 @@
+angular.moduler('MyCore', []);
