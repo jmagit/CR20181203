@@ -1,0 +1,84 @@
+<div ng-controller="PersonasController as vm">
+    <h1>Mantenimiento de Personas</h1>
+    <div ng-switch on="vm.modo">
+        <div ng-switch-when="list">
+            <table>
+                <tr>
+                    <th>Nombre</th>
+                    <td><input type="button" value="Añadir" ng-click="vm.add()">
+                        <input type="button" value="Actualizar" ng-click="vm.list()"></td>
+                </tr>
+                <tr ng-repeat="item in vm.listado">
+                    <td>{{item.nombre}} {{item.apellidos}}</td>
+                    <td>
+                        <input type="button" value="Ver" ng-click="vm.view(item.id)">
+                        <input type="button" value="Editar" ng-click="vm.edit(item.id)">
+                        <input type="button" value="Borrar" ng-click="vm.delete(item.id)">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div ng-switch-when="view">
+            <p>
+                Código:
+                {{vm.elemento.id}}
+                <br />
+                Nombre:
+                {{vm.elemento.nombre}}
+                <br />
+                Apellidos:
+                {{vm.elemento.apellidos}}
+                <br />
+                Edad:
+                {{vm.elemento.edad}}
+            </p>
+            <p>
+                <input type="button" value="Volver" ng-click="vm.cancel()">
+            </p>
+        </div>
+        <form name="miForm" ng-switch-default>
+            <p>
+                Código:
+                <span ng-if="vm.modo === 'add'">
+                    <input type="number" id="id" name="id" ng-model="vm.elemento.id"
+                           required>
+                    <span class="error" ng-show="miForm.id.$error.required && miForm.$dirty">
+                    Es obligatorio.
+                    </span>
+                </span>
+                <span ng-if="vm.modo !== 'add'">
+                    {{vm.elemento.id}}
+                </span>
+                <br />
+                Nombre:
+                <input type="text" id="nombre" name="nombre" ng-model="vm.elemento.nombre"
+                       required ng-minlength="2" ng-maxlength="10">
+                <span class="error" ng-show="miForm.nombre.$error.required">
+                    Es obligatorio.
+                </span>
+                <span class="error" ng-show="miForm.nombre.$error.minlength || miForm.nombre.$error.maxlength">
+                Debe tener entre 2 y 10 letras.
+                </span>
+                <br />
+                Apellidos:
+                <input type="text" id="apellidos" name="apellidos" ng-model="vm.elemento.apellidos"
+                       ng-minlength="2" ng-maxlength="10">
+                <span class="error" ng-show="miForm.apellidos.$error.minlength || miForm.apellidos.$error.maxlength">
+                    Debe tener entre 2 y 10 letras.
+                </span>
+                <br />
+                Edad:
+                <input type="number" id="edad" name="edad" ng-model="vm.elemento.edad"
+                       min="18" max="67">
+                <span class="error" ng-show="miForm.edad.$error.min || miForm.edad.$error.max">
+                    Debe estar entre los 18 y 67 años.
+                </span>
+            </p>
+            <p>
+                <input type="button" value="Enviar" ng-click="vm.send()" 
+                       ng-disabled="miForm.$invalid">
+                <input type="button" value="Volver" ng-click="vm.cancel()">
+            </p>
+        </form>
+    </div>
+</div>

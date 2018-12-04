@@ -13,16 +13,20 @@
     <h1>Curso de Angular</h1>
     <h3>Hola {{app.auth.usuario}}</h3>
 
-    <div ng-controller="myController as vm">
-        <p>
-            <input type="text" ng-model="vm.nombre">
-            <input type="button" value="saluda" ng-click="vm.saluda()">
-            <input type="button" value="despide" ng-click="vm.despide()">
-            <input type="button" value="login" ng-click="vm.auth.login('admin', '1234567890')">
-            <input type="button" value="logout" ng-click="vm.auth.logout()">
-        </p>
-        <p ng-bind="vm.resultado"></p>
-    </div>
+    <ng-include src="'views/demos3.html'"></ng-include>
+
+    <script type="text/ng-template" id="views/demos.html">
+        <div ng-controller="myController as vm">
+            <p>
+                <input type="text" ng-model="vm.nombre">
+                <input type="button" value="saluda" ng-click="vm.saluda()">
+                <input type="button" value="despide" ng-click="vm.despide()">
+                <input type="button" value="login" ng-click="vm.auth.login('admin', '1234567890')">
+                <input type="button" value="logout" ng-click="vm.auth.logout()">
+            </p>
+            <p ng-bind="vm.resultado"></p>
+        </div>
+    </script>
     <!-- Framewoks -->
     <script src="vendor/angularjs/angular.js"></script>
     <script src="vendor/angularjs/i18n/angular-locale_es-es.js"></script>

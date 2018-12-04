@@ -1,0 +1,46 @@
+.error {
+    color: red;
+}
+
+form .ng-invalid {
+	border-color: red;
+	box-shadow: 5px 5px 5px red;
+	transform: scale(1.1);
+    transition: all linear 1s;
+    margin: 1pt 9pt 5pt 5pt;
+}
+
+.my-card {
+    background-color: navy;
+    border: 1px solid navy;
+    border-radius: 5px;
+}
+.my-card .my-card-title {
+    color: white;
+    padding: 3pt;
+}
+.my-card .my-card-body {
+    background-color: lightyellow;
+    color: navy;
+    padding: 5pt;
+}
+
+.tab-pane {
+	border: 1px solid black;
+	background-color: steelblue;
+	padding: 5px;
+}
+.tab-active {
+	border-top-left-radius: 5pt;
+	border-top-right-radius: 5pt;
+	background-color: steelblue;
+	color: white;
+	padding: 5pt;
+}
+.tab-inactive {
+	border-top-left-radius: 5pt;
+	border-top-right-radius: 5pt;
+	background-color: skyblue;
+	color: white;
+	padding: 5pt;
+}

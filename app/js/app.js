@@ -1,5 +1,9 @@
 angular.module("MyApp", ['MyCore']);
 
+angular.module("MyApp").run(function($templateCache) {
+	$templateCache.put('views/demos3.html', '<h2>Adios mundo</h2>');
+  });
+  
 angular.module("MyApp").controller('PrincipalController', ['auth',
 	function (auth) {
 		this.title = 'Curso de AngularJS';
@@ -42,3 +46,32 @@ angular.module("MyApp").factory('auth', [function () {
 
 	};
 }]);
+
+angular.module('MyApp').factory('NotificationService', ['$log', function ($log) {
+	return {
+		listado: [],
+		hayMensajes: false,
+		add: function (msg) {
+			if (msg) {
+				var id = this.listado.length ? this.listado[this.listado.length - 1].id + 1 : 1;
+				this.listado.push({id: id, message: msg});
+			} else {
+				$log.error('Falta el mensaje.');
+			}
+			this.hayMensajes = this.listado.length > 0;
+		},
+		remove: function (index) {
+			if (0 <= index && index < this.listado.length) {
+				this.listado.splice(index, 1);
+			} else {
+				$log.error('Index out of range.');
+			}
+			this.hayMensajes = this.listado.length > 0;
+		},
+		clear: function () {
+			this.listado = [];
+			this.hayMensajes = false;
+		},
+	};
+  }]);
+  
