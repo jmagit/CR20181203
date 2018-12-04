@@ -11,9 +11,27 @@
 
 <body>
     <app-menu on-selecionado="app.selecciona(seleccionado)"></app-menu>
+    <app-notification></app-notification>    
+
     <h1>Curso de Angular</h1>
     <ng-include src="app.seleccionado"></ng-include>
 
+    <script type="text/ng-template" id="views/notification.html">
+        <div>
+            <div class="notificaciones" ng-if="vm.notify.hayMensajes">
+                <ul>
+                    <li ng-repeat="item in vm.notify.listado">
+                        {{item.message | capitalize}}
+                        <button type="button" ng-click="vm.notify.remove($index)">X</button>
+                    </li>
+                </ul>
+                <p class="center">
+                    <input type="button" value="Cerra"
+                        ng-click="vm.notify.clear()">
+                </p>
+            </div>
+        </div>
+    </script>
     
     <script type="text/ng-template" id="views/demos.html">
         <div ng-controller="myController as vm">
@@ -23,6 +41,7 @@
                 <input type="button" value="despide" ng-click="vm.despide()">
                 <input type="button" value="login" ng-click="vm.auth.login('admin', '1234567890')">
                 <input type="button" value="logout" ng-click="vm.auth.logout()">
+                <input type="button" value="notifica" ng-click="vm.notifica()">
             </p>
             <p ng-bind="vm.resultado"></p>
         </div>

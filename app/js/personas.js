@@ -56,7 +56,7 @@ angular.module('MyApp').controller('PersonasController',
             }
         };
         vm.delete = function (key) {
-            if (!$window.confirm('¿Seguro?')) return;
+            // if (!$window.confirm('¿Seguro?')) return;
             var index = vm.listado.findIndex(function (item) {
                 return item[pk] == key;
             });

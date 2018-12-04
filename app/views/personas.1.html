@@ -13,8 +13,7 @@
                     <td>
                         <input type="button" value="Ver" ng-click="vm.view(item.id)">
                         <input type="button" value="Editar" ng-click="vm.edit(item.id)">
-                        <input type="button" value="Borrar" confirm="vm.delete(item.id)" 
-                            confirm-msg="Los datos no se podran recuperar. ¿Continuo?">
+                        <input type="button" value="Borrar" ng-click="vm.delete(item.id)">
                     </td>
                 </tr>
             </table>
@@ -32,9 +31,6 @@
                 <br />
                 Edad:
                 {{vm.elemento.edad}}
-                <br />
-                N.I.F.:
-                {{vm.elemento.NIF}}
             </p>
             <p>
                 <input type="button" value="Volver" ng-click="vm.cancel()">
@@ -42,8 +38,9 @@
         </div>
         <form name="miForm" ng-switch-default>
             <p>
+                Código:
                 <span ng-if="vm.modo === 'add'">
-                    <input lbl-title="Código" type="text" id="id" name="id" ng-model="vm.elemento.id"
+                    <input type="text" id="id" name="id" ng-model="vm.elemento.id"
                            required val-integer>
                     <span class="error" ng-show="miForm.id.$error.required && miForm.$dirty">
                     Es obligatorio.
@@ -53,10 +50,11 @@
                     </span>
                 </span>
                 <span ng-if="vm.modo !== 'add'">
-                    Código: {{vm.elemento.id}}
+                    {{vm.elemento.id}}
                 </span>
                 <br />
-                <input lbl-title="Nombre" class="campo" type="text" id="nombre" name="nombre" ng-model="vm.elemento.nombre"
+                Nombre:
+                <input type="text" id="nombre" name="nombre" ng-model="vm.elemento.nombre"
                        required ng-minlength="2" ng-maxlength="10">
                 <span class="error" ng-show="miForm.nombre.$error.required">
                     Es obligatorio.
@@ -65,22 +63,18 @@
                 Debe tener entre 2 y 10 letras.
                 </span>
                 <br />
-                <input lbl-title="Apellidos" type="text" id="apellidos" name="apellidos" ng-model="vm.elemento.apellidos"
+                Apellidos:
+                <input type="text" id="apellidos" name="apellidos" ng-model="vm.elemento.apellidos"
                        ng-minlength="2" ng-maxlength="10">
                 <span class="error" ng-show="miForm.apellidos.$error.minlength || miForm.apellidos.$error.maxlength">
                     Debe tener entre 2 y 10 letras.
                 </span>
                 <br />
-                <input lbl-title="Edad" type="number" id="edad" name="edad" ng-model="vm.elemento.edad"
+                Edad:
+                <input type="number" id="edad" name="edad" ng-model="vm.elemento.edad"
                        min="18" max="67">
                 <span class="error" ng-show="miForm.edad.$error.min || miForm.edad.$error.max">
                     Debe estar entre los 18 y 67 años.
-                </span>
-                <br />
-                <input lbl-title="N.I.F." type="text" id="NIF" name="NIF" ng-model="vm.elemento.NIF"
-                    val-nif>
-                <span class="error" ng-show="miForm.NIF.$error.valNif">
-                    Número de identificador fiscal incorrecto.
                 </span>
             </p>
             <p>

@@ -89,3 +89,54 @@ angular.module('MyCore').directive('valInteger', function() {
     }
   };
 });
+
+function esUnNIFValaido(value) {
+  if (!(/^\d{1,8}\w$/.test(value))) return false;
+  var letterValue = value.substr(value.length - 1);
+  var numberValue = value.substr(0, value.length - 1);
+  return letterValue.toUpperCase() === "TRWAGMYFPDXBNJZSQVHLCKE".charAt(numberValue % 23);
+}
+angular.module("MyCore").directive('valNif', function() {
+  return {
+      require: 'ngModel',
+      link: function(scope, elm, attrs, ctrl) {
+          ctrl.$validators.valNif = function(modelValue, viewValue) {
+              // tratamos los modelos vacíos como correctos
+              if (ctrl.$isEmpty(modelValue)) {
+                  return true;
+              }
+              return esUnNIFValaido(viewValue);
+          };
+      }
+  };
+});
+
+angular.module("MyCore").directive("lblTitle", [function() {
+  return {
+      restrict: "A",
+      link: function(scope, element, attrs, controller, transcludeFn) {
+          var lbl = "<label" +
+              (attrs.class ? (" class='" + attrs.class + "'") : "") +
+              ">" + attrs.lblTitle + ": </label>";
+          element.removeAttr('lbl-title');
+          element.wrap(lbl);
+      }
+  };
+}]);
+angular.module("MyCore").directive("confirm", ['$window', '$parse', function($window, $parse) {
+  return {
+      restrict: "A",
+      link: function(scope, element, attrs, controller, transcludeFn) {
+        if(!attrs.confirm) 
+          throw new Error("Falta el argumento");
+        var fn = $parse(attrs.confirm);
+        element.on('click', function(event) {
+            if($window.confirm(attrs.confirmMsg ? attrs.confirmMsg : '¿Seguro?')) {
+                scope.$apply(function() {
+                  fn(scope, {$event: event});
+                });
+            }
+        });
+      }
+  };
+}]);

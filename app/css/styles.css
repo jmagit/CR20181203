@@ -1,3 +1,5 @@
+/* Formularios ******************************************************/
+
 .error {
     color: red;
 }
@@ -9,6 +11,12 @@ form .ng-invalid {
     transition: all linear 1s;
     margin: 1pt 9pt 5pt 5pt;
 }
+
+label.campo {
+	color: green;
+	font-weight: bold;
+}
+/* my-card ******************************************************/
 
 .my-card {
     background-color: navy;
@@ -24,6 +32,8 @@ form .ng-invalid {
     color: navy;
     padding: 5pt;
 }
+
+/* my-tabs ******************************************************/
 
 .tab-pane {
 	border: 1px solid black;
@@ -43,4 +53,48 @@ form .ng-invalid {
 	background-color: skyblue;
 	color: white;
 	padding: 5pt;
+}
+
+/* Notificaciones ******************************************************/
+
+.notificaciones {
+	border: 1px solid red;
+	border-radius: 5pt;
+	background: rgb(255, 255, 109);
+	padding: 0pt 5pt 5pt 5pt;
+	margin: 5pt;
+	margin-top: 1pt;
+
+	-webkit-box-shadow: 5px 7px 5px 0px rgba(255, 0, 0, 0.49);
+	-moz-box-shadow: 5px 7px 5px 0px rgba(255, 0, 0, 0.49);
+	box-shadow: 5px 7px 5px 0px rgba(255, 0, 0, 0.49);
+}
+
+.notificaciones ul {
+	margin: 3pt;
+}
+
+.notificaciones li {
+	margin: 2pt;
+}
+
+.notificaciones li button {
+	float: right;
+	font-size: 0.8em;
+}
+
+.center {
+	text-align: center;
+}
+
+/* Animaciones ******************************************************/
+
+.anima {
+	transition: all linear 0.5s;
+	background-color: lightblue;
+	height: 100px;
+  }
+  
+.anima.ng-hide {
+	height: 0;
 }

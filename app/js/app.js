@@ -15,8 +15,8 @@ angular.module("MyApp").controller('PrincipalController', ['auth',
 	}
 ]);
 
-angular.module("MyApp").controller('myController', ['$scope', 'auth',
-	function ($scope, auth) {
+angular.module("MyApp").controller('myController', ['$scope', 'auth', 'NotificationService', 
+	function ($scope, auth, notify) {
 		var vm = this;
 		vm.nombre = 'MUNDO';
 		vm.resultado = '';
@@ -27,6 +27,9 @@ angular.module("MyApp").controller('myController', ['$scope', 'auth',
 		};
 		vm.despide = function () {
 			vm.resultado = "Adios " + vm.nombre;
+		};
+		vm.notifica = function () {
+			notify.add("Notificación para " + vm.nombre);
 		};
 	}
 ]);
@@ -78,6 +81,14 @@ angular.module('MyApp').factory('NotificationService', ['$log', function ($log) 
 	};
   }]);
 
+angular.module('MyApp').component('appNotification', {
+	templateUrl : 'views/notification.html',
+	controller : ['NotificationService', function (srv) {
+        this.notify = srv;
+      }],
+	controllerAs : 'vm',
+});
+
 angular.module('MyApp').directive("mySaludo",[function() {
 	return {
     restrict:"E",
@@ -87,30 +98,27 @@ angular.module('MyApp').directive("mySaludo",[function() {
   };
 }]);
 
-angular.module("MyApp").controller('MenuController', [
-	function () {
+angular.module("MyApp").component('appMenu', {
+	template : '<p><input type="button" ng-repeat="item in vm.menu" value="{{item.texto}}" ng-click="vm.selecciona($index)" ></p>',
+	controller : function () {
 		var vm = this;
 		vm.menu = [
+			{ texto: 'Personas', template: 'views/personas.html'},
 			{ texto: 'Demos1', template: 'views/demos.html'},
 			{ texto: 'Demos2', template: 'views/demos2.html'},
 			{ texto: 'Demos3', template: 'views/demos3.html'},
-			{ texto: 'Personas', template: 'views/personas.html'},
 		];
-		vm.seleccionado = vm.menu[0].template;
 		vm.selecciona = function(indice) {
-			if(0<=indice && indice < vm.menu.length) {
-				vm.seleccionado = vm.menu[indice].template;
-				if(this.onSelecionado) {
-					this.onSelecionado({seleccionado: vm.seleccionado});
-				}
+			if(0 <= indice && indice < vm.menu.length && this.onSelecionado) {
+				this.onSelecionado({seleccionado: vm.menu[indice].template});
 			}
 		};
-	}
-]);
-
-angular.module("MyApp").component('appMenu', {
-	template : '<p><input type="button" ng-repeat="item in vm.menu" value="{{item.texto}}" ng-click="vm.selecciona($index)" ></p>',
-	controller : 'MenuController',
+		vm.$onInit = function() {
+			if(this.onSelecionado) {
+				this.onSelecionado({seleccionado: vm.menu[0].template});
+			}
+		}
+	},
 	controllerAs : 'vm',
 	bindings : { onSelecionado : '&'}
 });
