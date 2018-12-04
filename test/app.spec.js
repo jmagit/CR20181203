@@ -74,3 +74,23 @@ describe("Pruebas de servicios", function() {
         expect(srv.isAuthenticated).toBeFalsy();
         });
   });
+  describe('Pruebas de directivas', function() {
+    var $compile, $rootScope;
+  
+    beforeEach(module('MyApp'));
+  
+    beforeEach(inject(function(_$compile_, _$rootScope_){
+      $compile = _$compile_;
+      $rootScope = _$rootScope_;
+    }));
+  
+    it('Reemplaza el elemento con el contenido apropiado', function() {
+      // Compilar el trozo de HTML que contiene la directiva
+      var element = $compile('<div><my-saludo nombre="Ciudad Real"></my-saludo></div>')($rootScope);
+      // Disparar todos los watches, por lo que la expresión {{1 + 1}} sera evaluada
+      $rootScope.$digest();
+      // Comprobar que el elemento compilado contiene el contenido de la plantilla
+      expect(element.html()).toContain('<h1 nombre="Ciudad Real" class="ng-binding ng-isolate-scope">Hola Ciudad Real</h1>');
+    });
+  });
+  

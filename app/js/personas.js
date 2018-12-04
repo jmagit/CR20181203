@@ -85,11 +85,10 @@ angular.module('MyApp').controller('PersonasController',
                     });
                     if (index >= 0) {
                         vm.listado[index] = vm.elemento;
-                        vm.list();
+                        vm.cancel();
                     } else {
                         notify.add('Elemento no encontrado.');
                     }
-                    vm.cancel();
                     break;
                 case 'view':
                     vm.cancel();

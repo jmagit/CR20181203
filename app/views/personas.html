@@ -40,10 +40,13 @@
             <p>
                 Código:
                 <span ng-if="vm.modo === 'add'">
-                    <input type="number" id="id" name="id" ng-model="vm.elemento.id"
-                           required>
+                    <input type="text" id="id" name="id" ng-model="vm.elemento.id"
+                           required val-integer>
                     <span class="error" ng-show="miForm.id.$error.required && miForm.$dirty">
                     Es obligatorio.
+                    </span>
+                    <span class="error" ng-show="miForm.id.$error.valInteger && miForm.$dirty">
+                    Tiene que ser un número.
                     </span>
                 </span>
                 <span ng-if="vm.modo !== 'add'">
