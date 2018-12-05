@@ -12,7 +12,8 @@ angular.module("MyApp").factory("PersonasService", [
 ]);
 
 angular.module('MyApp').controller('PersonasController',
-    ['$window', 'PersonasService', 'NotificationService', function ($window, srv, notify) {
+    ['$window', 'PersonasService', 'NotificationService', '$routeParams', '$location', 
+    function ($window, srv, notify, $routeParams, $location) {
         var vm = this;
 
         vm.modo = 'list';
@@ -20,6 +21,7 @@ angular.module('MyApp').controller('PersonasController',
         vm.elemento = {};
         var idOriginal = null;
         var pk = 'id';
+        var urlList = '/personas';
 
         vm.list = function () {
             if (!vm.listado) {
@@ -72,6 +74,7 @@ angular.module('MyApp').controller('PersonasController',
             vm.elemento = {};
             idOriginal = null;
             vm.list();
+            $location.url(urlList);
         };
         vm.send = function () {
             switch (vm.modo) {
@@ -95,6 +98,16 @@ angular.module('MyApp').controller('PersonasController',
                     break;
             }
         };
-
         vm.list();
+        if($routeParams.id) {
+            if($location.url().endsWith('/edit'))
+                vm.edit($routeParams.id);
+            else
+                vm.view($routeParams.id);
+        } else {
+            if($location.url().endsWith('/add'))
+                vm.add();
+            else
+                vm.list();
+        }
     }]);

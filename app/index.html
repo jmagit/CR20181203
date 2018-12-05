@@ -10,11 +10,21 @@
 </head>
 
 <body>
-    <app-menu on-selecionado="app.selecciona(seleccionado)"></app-menu>
+    <!-- <app-menu on-selecionado="app.selecciona(seleccionado)"></app-menu> -->
+    <p>
+        <a href="#!/inicio">inicio</a>&nbsp;|&nbsp;
+        <a href="#!/como/me/de/la/gana">Demo2</a>&nbsp;|&nbsp;
+        <a href="#!/como/pagina.html">Demo3</a>&nbsp;|&nbsp;
+        <a href="#!/personas">personas</a>&nbsp;|&nbsp;
+        <a href="#!/inventada">inventada</a>&nbsp;|&nbsp;
+    </p>
     <app-notification></app-notification>    
 
-    <h1>Curso de Angular</h1>
-    <ng-include src="app.seleccionado"></ng-include>
+    <h1 class="anima" ng-show="app.visible">Curso de Angular</h1>
+    <input type="button" value="cambia" ng-click="app.visible = !app.visible;">
+
+    <!-- <ng-include src="app.seleccionado"></ng-include> -->
+    <div ng-view></div>
 
     <script type="text/ng-template" id="views/notification.html">
         <div>
@@ -34,7 +44,7 @@
     </script>
     
     <script type="text/ng-template" id="views/demos.html">
-        <div ng-controller="myController as vm">
+        <div>
             <p>
                 <input type="text" ng-model="vm.nombre">
                 <input type="button" value="saluda" ng-click="vm.saluda()">
@@ -49,6 +59,8 @@
     <!-- Framewoks -->
     <script src="vendor/angularjs/angular.js"></script>
     <script src="vendor/angularjs/i18n/angular-locale_es-es.js"></script>
+    <script src="vendor/angularjs/angular-animate.js"></script>
+    <script src="vendor/angularjs/angular-route.js"></script>
 
     <!-- Mi código -->
     <script src="js/my-core.js"></script>

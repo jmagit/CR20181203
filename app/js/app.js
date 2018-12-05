@@ -1,9 +1,47 @@
-angular.module("MyApp", ['MyCore']);
+angular.module("MyApp", ['MyCore', 'ngAnimate', 'ngRoute']);
 
 angular.module("MyApp").run(function($templateCache) {
 	$templateCache.put('views/demos3.html', '<h2>Adios mundo</h2>');
   });
   
+  angular.module("MyApp").config(['$routeProvider',  function($routeProvider) {
+    $routeProvider
+      .when('/', {
+        templateUrl: 'views/demos.html', controller: 'myController', controllerAs: 'vm'
+      })
+      .when('/inicio', {
+        templateUrl: 'views/demos.html', controller: 'myController', controllerAs: 'vm'
+	  })
+	  .when('/como/me/de/la/gana', {
+        templateUrl: 'views/demos2.html'
+      })
+	  .when('/como/pagina.html', {
+        templateUrl: 'views/demos3.html'
+      })
+      .when('/personas', {
+        templateUrl: 'views/personas/list.html', controller: 'PersonasController', controllerAs: 'vm'
+	  })
+	  // Ordenar correctamente las rutas
+      .when('/personas/add', {
+        templateUrl: 'views/personas/form.html', controller: 'PersonasController', controllerAs: 'vm'
+      })
+      .when('/personas/:id/edit', { // /personas/*/edit
+        templateUrl: 'views/personas/form.html', controller: 'PersonasController', controllerAs: 'vm'
+      })
+      .when('/personas/:id', { // /personas/*
+        templateUrl: 'views/personas/view.html', controller: 'PersonasController', controllerAs: 'vm'
+      })
+      .when('/personas/:id/:kk*', { // /personas/*/*
+        templateUrl: 'views/personas/view.html', controller: 'PersonasController', controllerAs: 'vm'
+      })
+      .when('/pepito/grillo', {
+        redirectTo: '/personas/2'
+      })
+      .otherwise({
+        redirectTo: '/'
+      });
+}])
+
 angular.module("MyApp").controller('PrincipalController', ['auth',
 	function (auth) {
 		this.title = 'Curso de AngularJS';
@@ -12,6 +50,7 @@ angular.module("MyApp").controller('PrincipalController', ['auth',
 		this.selecciona = function(nuevo) {
 			this.seleccionado = nuevo;
 		}
+		this.visible = true;
 	}
 ]);
 

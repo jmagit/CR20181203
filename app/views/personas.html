@@ -5,7 +5,7 @@
             <table>
                 <tr>
                     <th>Nombre</th>
-                    <td><input type="button" value="Añadir" ng-click="vm.add()">
+                    <td><input type="button" value="Añadir" confirm="vm.add()">
                         <input type="button" value="Actualizar" ng-click="vm.list()"></td>
                 </tr>
                 <tr ng-repeat="item in vm.listado">
