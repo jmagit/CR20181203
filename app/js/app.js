@@ -4,7 +4,7 @@ angular.module("MyApp").run(function($templateCache) {
 	$templateCache.put('views/demos3.html', '<h2>Adios mundo</h2>');
   });
   
-  angular.module("MyApp").config(['$routeProvider',  function($routeProvider) {
+angular.module("MyApp").config(['$routeProvider',  function($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/demos.html', controller: 'myController', controllerAs: 'vm'
@@ -42,6 +42,21 @@ angular.module("MyApp").run(function($templateCache) {
       });
 }])
 
+angular.module("MyApp").config(['$httpProvider', function ($httpProvider) {
+    $httpProvider.interceptors.push(["$q", "auth", function ($q, auth) {
+        return {
+            'request': function (config) {
+                if (config.withCredentials && auth.isAuthenticated)
+                    config.headers['Authorization'] = auth.token;
+                return config;
+            },
+            'requestError': function(rejection) { return $q.reject(rejection); },
+            'response': function (response) { return response; },
+            'responseError': function(rejection) { return $q.reject(rejection); },
+        };
+    }]);
+}]);
+
 angular.module("MyApp").controller('PrincipalController', ['auth',
 	function (auth) {
 		this.title = 'Curso de AngularJS';
@@ -75,9 +90,9 @@ angular.module("MyApp").controller('myController', ['$scope', 'auth', 'Notificat
 
 angular.module("MyApp").factory('auth', [function () {
 	return {
-		usuario: '(anonimo)',
-		token: null,
-		isAuthenticated: false,
+		usuario: 'Admin',
+		token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiYWRtaW4iLCJleHBpcmVzSW4iOiIxaCIsImlhdCI6MTU0NDAxMTkwMn0.hVJk0Nu0RTH_Ap8mMP0t5ucoYIIrEun4_jxJj7aBVKg',
+		isAuthenticated: true,
 		login: function (usr, token) {
 			this.usuario = usr;
 			this.token = token;
